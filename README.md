@@ -53,18 +53,12 @@ The restore script uses the latest successful Spot64 backup and runs `spicetify 
 
 > **Personal themes:** File backups do not include Spotify browser `localStorage`. Export any important saved themes or settings separately before reinstalling or changing Spotify data.
 
-### Six built-in themes
-Create and save your own themes without replacing the built-in collection. Custom CSS import, export, and advanced overrides provide more detailed styling control.
-
-### Animated Dither wallpapers
-### Focus Mode and ASCII artwork
-
+- Create and save your own themes without replacing the built-in collection. 
+- Custom CSS import, export, and advanced overrides provide more detailed styling control.
 - Use the on-screen **`-`** control to hide the main panels and focus on the wallpaper; **`+`** restores them.
 - Toggle **`~`** to display or dismiss animated ASCII artwork in its own framed window over the wallpaper.
 - Theme-aware borders, rounded corners, and configurable panel styling.
-
-### Playback and customization
-
+- Playback and customization
 - Playback controls, seeking, volume slider, and mute control.
 - Library browsing, queue, history, and additional playback features.
 - Customize panel for everyday appearance settings and advanced styling options.
