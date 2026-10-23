@@ -28,9 +28,6 @@ try {
         'spot64AnsiBackground.js'='const LINES = ['
         'spot64Dither.js'='__spot64DitherExtensionLoaded'
     }
-    $jsFiles = @(Get-ChildItem -LiteralPath $extensionsDir -Filter '*.js' -File)
-    $sources = @{}
-    foreach ($file in $jsFiles) { $sources[$file.FullName] = [IO.File]::ReadAllText($file.FullName) }
     $targets = @()
     foreach ($entry in $manifest.extensions) {
         $name = [string]$entry.name
@@ -39,17 +36,33 @@ try {
         if (!(Test-Path -LiteralPath $sourcePath -PathType Leaf)) { throw "Missing payload: $name" }
         $sourceHash = (Get-FileHash -LiteralPath $sourcePath -Algorithm SHA256).Hash.ToLowerInvariant()
         if ($sourceHash -cne [string]$entry.sha256) { throw "Source integrity verification failed: $name" }
-        $matches = @($jsFiles | Where-Object { $sources[$_.FullName].Contains($signatures[$name]) })
-        if ($matches.Count -gt 1) { throw "More than one installed copy of $name detected. Resolve duplicates manually before installing." }
-        if ($matches.Count -eq 1) { $target = $matches[0].FullName }
-        else { $target = Join-Path $extensionsDir $name }
-        if ((Test-Path -LiteralPath $target) -and $matches.Count -eq 0) {
+        $target = Join-Path $extensionsDir $name
+        $exists = Test-Path -LiteralPath $target -PathType Leaf
+        if ($exists -and !([IO.File]::ReadAllText($target).Contains($signatures[$name]))) {
             throw "File collision at $target. Refusing to replace an unrelated extension."
         }
-        if (@($targets | Where-Object { $_.target -eq $target }).Count -gt 0) { throw "Extension signatures overlap at $target. No changes made." }
-        $exists = Test-Path -LiteralPath $target -PathType Leaf
         $previousHash = if ($exists) { (Get-FileHash -LiteralPath $target -Algorithm SHA256).Hash.ToLowerInvariant() } else { $null }
         $targets += [pscustomobject]@{ name=$name; source=$sourcePath; target=$target; existed=$exists; originalHash=$previousHash; installedHash=$sourceHash; backup=$null }
+    }
+    $configText = [IO.File]::ReadAllText($configFile)
+    $configMatch = [regex]::Match($configText, '(?im)^\s*extensions\s*=\s*([^\r\n]*)')
+    $configured = @()
+    if ($configMatch.Success) {
+        $configured = @($configMatch.Groups[1].Value -split '[|,\s]+' | Where-Object { $_.Trim() -ne '' })
+    }
+    $canonical = @($targets | ForEach-Object { $_.name })
+    $legacyRegistrations = @()
+    foreach ($alias in $configured) {
+        if ($canonical -contains $alias -or $alias -notmatch '^(?i:(?:spot64|terminalMinimal)[\w.()-]*)\.js$') { continue }
+        $legacyFile = Join-Path $extensionsDir $alias
+        if (!(Test-Path -LiteralPath $legacyFile -PathType Leaf)) { continue }
+        $legacySource = [IO.File]::ReadAllText($legacyFile)
+        $owned = $false
+        foreach ($signature in $signatures.Values) {
+            if ($legacySource.Contains([string]$signature)) { $owned = $true; break }
+        }
+        if ($alias -ieq 'spot64CoverToggle.js' -and $legacySource.Contains('tm-visualizer.tm-char-wave')) { $owned = $true }
+        if ($owned -and $legacyRegistrations -notcontains $alias) { $legacyRegistrations += $alias }
     }
     $stamp = (Get-Date -Format 'yyyyMMdd-HHmmss-fff') + '-' + [guid]::NewGuid().ToString('N').Substring(0,8)
     $backupRoot = Join-Path (Join-Path $spicetifyDir 'spot64-backups') $stamp
@@ -66,6 +79,10 @@ try {
             if ((Get-FileHash -LiteralPath $backup -Algorithm SHA256).Hash.ToLowerInvariant() -cne $entry.originalHash) { throw "Backup verification failed: $($entry.name)" }
             $entry.backup=$backup
         }
+    }
+    foreach ($alias in $legacyRegistrations) {
+        & spicetify config extensions ($alias + '-')
+        if ($LASTEXITCODE -ne 0) { throw "Unable to unregister previous Spot64 extension: $alias" }
     }
     foreach ($entry in $targets) {
         if ($entry.originalHash -cne $entry.installedHash) {
@@ -90,6 +107,7 @@ try {
         if ((Get-FileHash -LiteralPath $entry.target -Algorithm SHA256).Hash.ToLowerInvariant() -cne $entry.installedHash) { throw "Final hash mismatch: $($entry.name)" }
     }
     Write-Host "Spot64 sources verified and installed ($($targets.Count) extensions)." -ForegroundColor Green
+    if ($legacyRegistrations.Count) { Write-Host "Disabled older Spot64 registrations: $($legacyRegistrations -join ', ')" }
     Write-Host "Persistent backup: $backupRoot"
     if (!$SkipApply) {
         & spicetify apply
