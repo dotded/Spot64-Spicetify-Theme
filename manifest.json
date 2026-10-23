@@ -1,0 +1,47 @@
+{
+  "name": "Spot64",
+  "version": "V1.0",
+  "release_status": "Unpublished source draft. Requires installed-file comparison and Windows/Spotify testing.",
+  "extensions": [
+    {
+      "name": "spot64Core.js",
+      "sha256": "bab4aee945e3acf7804f838df8dc23eefc2b80ead2415888b43cf7df1099fd2b",
+      "bytes": 40703
+    },
+    {
+      "name": "spot64Customize.js",
+      "sha256": "04a813303dbe44eaed067a5907052176d62e3171ec89ba5fe72b0d3e9a4ae9d1",
+      "bytes": 94426
+    },
+    {
+      "name": "spot64TerminalThemes.js",
+      "sha256": "2f08316bc81d75b045166b0fa7ef248a9c84b751afcff9eecd65d4f285c02fcb",
+      "bytes": 37657
+    },
+    {
+      "name": "spot64PlaybackLibrary.js",
+      "sha256": "12586c64a1033f87dc9e7f7d360f9f9d2174961026d8c7122b5af495f983e0fc",
+      "bytes": 26788
+    },
+    {
+      "name": "spot64NowPlayingInfo.js",
+      "sha256": "4eb299d9a41acdc48ad0d3130cd6da97349f8439e9d16300aa876b9ef2cb8f38",
+      "bytes": 7153
+    },
+    {
+      "name": "spot64Artwork.js",
+      "sha256": "cef0e9fafe12e216ee35ca3cba95875a0e5d49fc95a5291387794ed9168dc21f",
+      "bytes": 13462819
+    },
+    {
+      "name": "spot64AnsiBackground.js",
+      "sha256": "43568c0230de71e523cb6c680eb22c8dff61ac8b0a1b232df190121989b2050b",
+      "bytes": 59725
+    },
+    {
+      "name": "spot64Dither.js",
+      "sha256": "526cc9a6148dd1278c56e3abe2a1ed57ee9e8dff4a6da9bf53077562c4fa6db0",
+      "bytes": 57633
+    }
+  ]
+}
