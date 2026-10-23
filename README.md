@@ -3,11 +3,7 @@ Spicetify Theme.
 
 Spot64 is a customizable desktop Spotify interface built with [Spicetify](https://spicetify.app/). 
 
-| Main interface | Dither wallpaper + ASCII artwork |
-| :---: | :---: |
 | ![Spot64 main interface](assets/Spot64-Interface.png) | ![Spot64 Dither wallpaper with ASCII artwork](assets/Spot64-Dither.png) |
-
-> **Screenshots:** Add two images to the `assets` folder using the exact filenames `Spot64-Interface.png` and `Spot64-Dither.png`. The previews will appear here automatically once those files are uploaded to GitHub.
 
 Spot64 is built for the [Spicetify](https://spicetify.app/) customization ecosystem. Spotify and the other services referenced by the visual presets are trademarks of their respective owners. Spot64 is an independent project and is not affiliated with or endorsed by them.
 
