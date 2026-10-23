@@ -38,9 +38,9 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\Install-Spot64.ps1
 
 **What the installer does:** checks source-file SHA-256 hashes against `manifest.json`, detects existing Spot64 extensions, creates a backup, installs and registers the eight active extensions, then applies Spicetify. If verification fails, it stops instead of silently overwriting unrecognized files.
 
-### Option 2 — One-line install (after the V1.0 release is published)
+### Option 2 — One-line install 
 
-Once the `V1.0` tag has been created and tested in this public repository, the version-pinned installation command is:
+the version-pinned installation command is:
 
 ```powershell
 irm https://raw.githubusercontent.com/dotded/Spot64-Spicetify-Theme/V1.0/bootstrap.ps1 | iex
