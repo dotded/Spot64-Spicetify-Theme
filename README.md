@@ -1,10 +1,7 @@
 Spot64 / V1.0
 Spicetify Theme.
 
-**Terminal character. Modern playback. Your interface.**
-
-Spot64 is a customizable desktop Spotify interface built with [Spicetify](https://spicetify.app/). It combines terminal-inspired styling, six built-in themes, animated Dither wallpaper, interactive mouse effects, ASCII artwork, and integrated playback controls.
-
+Spot64 is a customizable desktop Spotify interface built with [Spicetify](https://spicetify.app/). 
 
 | Main interface | Dither wallpaper + ASCII artwork |
 | :---: | :---: |
@@ -12,11 +9,7 @@ Spot64 is a customizable desktop Spotify interface built with [Spicetify](https:
 
 > **Screenshots:** Add two images to the `assets` folder using the exact filenames `Spot64-Interface.png` and `Spot64-Dither.png`. The previews will appear here automatically once those files are uploaded to GitHub.
 
-
-Created by **[dotded](https://github.com/dotded)**.
-
 Spot64 is built for the [Spicetify](https://spicetify.app/) customization ecosystem. Spotify and the other services referenced by the visual presets are trademarks of their respective owners. Spot64 is an independent project and is not affiliated with or endorsed by them.
-
 
 ### Requirements
 
@@ -60,27 +53,10 @@ The restore script uses the latest successful Spot64 backup and runs `spicetify 
 
 > **Personal themes:** File backups do not include Spotify browser `localStorage`. Export any important saved themes or settings separately before reinstalling or changing Spotify data.
 
-
 ### Six built-in themes
-
-| Theme | Visual style |
-| --- | --- |
-| **Spot64** | A simple terminal-inspired UI |
-| **Catppuccin** | A standard Catppuccin palette |
-| **Spotify** | Sleek dark surfaces with green accents |
-| **Access Granted** | Phosphor-green terminal styling |
-| **Discord** | Charcoal surfaces and blurple accents |
-| **Twitch** | Dark surfaces and purple accents |
-
 Create and save your own themes without replacing the built-in collection. Custom CSS import, export, and advanced overrides provide more detailed styling control.
 
-### Animated Dither wallpaper
-
-- GPU-rendered Dither wallpaper with adjustable pattern, pixel size, colours, opacity, and animation speed.
-- Automatic colour matching with the selected theme, with a manual-colour option.
-- **33 selectable mouse effects**, organized by category, with strength, radius, and smoothing controls.
-- Optional mouse parallax and separately selectable click effects.
-
+### Animated Dither wallpapers
 ### Focus Mode and ASCII artwork
 
 - Use the on-screen **`-`** control to hide the main panels and focus on the wallpaper; **`+`** restores them.
