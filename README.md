@@ -6,9 +6,6 @@ Spicetify Theme.
 Spot64 is a customizable desktop Spotify interface built with [Spicetify](https://spicetify.app/). It combines terminal-inspired styling, six built-in themes, animated Dither wallpaper, interactive mouse effects, ASCII artwork, and integrated playback controls.
 
 
-+----------------------------[ SHOWCASE ]----------------------------+
-
-
 | Main interface | Dither wallpaper + ASCII artwork |
 | :---: | :---: |
 | ![Spot64 main interface](assets/Spot64-Interface.png) | ![Spot64 Dither wallpaper with ASCII artwork](assets/Spot64-Dither.png) |
@@ -16,15 +13,9 @@ Spot64 is a customizable desktop Spotify interface built with [Spicetify](https:
 > **Screenshots:** Add two images to the `assets` folder using the exact filenames `Spot64-Interface.png` and `Spot64-Dither.png`. The previews will appear here automatically once those files are uploaded to GitHub.
 
 
-+-----------------------------[ CREDITS ]----------------------------+
-
-
 Created by **[dotded](https://github.com/dotded)**.
 
 Spot64 is built for the [Spicetify](https://spicetify.app/) customization ecosystem. Spotify and the other services referenced by the visual presets are trademarks of their respective owners. Spot64 is an independent project and is not affiliated with or endorsed by them.
-
-
-+----------------------------[ INSTALL ]----------------------------+
 
 
 ### Requirements
@@ -70,9 +61,6 @@ The restore script uses the latest successful Spot64 backup and runs `spicetify 
 > **Personal themes:** File backups do not include Spotify browser `localStorage`. Export any important saved themes or settings separately before reinstalling or changing Spotify data.
 
 
-+----------------------------[ FEATURES ]---------------------------+
-
-
 ### Six built-in themes
 
 | Theme | Visual style |
@@ -105,10 +93,6 @@ Create and save your own themes without replacing the built-in collection. Custo
 - Library browsing, queue, history, and additional playback features.
 - Customize panel for everyday appearance settings and advanced styling options.
 - Adjustable borders, typography, panel colours, seek-bar presentation, and CSS overrides.
-
-
-+----------------------------[ PROJECT ]----------------------------+
-
 
 | Path | Description |
 | --- | --- |
